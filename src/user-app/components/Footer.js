@@ -68,13 +68,6 @@ export class Footer extends Component {
             <p>&copy; {new Date().getFullYear()} <Link to="/">HouseClean</Link>.
               All Right Reserved</p>
           </div>
-
-          <div id="scroll-Top">
-            <i className="fa fa-angle-double-up return-to-top" id="scroll-top"
-               data-toggle="tooltip" data-placement="top"
-               title="" data-original-title="Back to Top"
-               aria-hidden="true"/>
-          </div>
         </div>
       </footer>
     );
