@@ -8,7 +8,7 @@ export class Layout extends Component {
     render() {
         return (
             <div>
-                <Navbar user={this.props.user} setUser={this.props.setUser} />
+                <Navbar/>
                 {this.props.children}
                 <Footer />
             </div>

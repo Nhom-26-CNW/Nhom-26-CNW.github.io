@@ -2,46 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8415edb6-56cb-485b-9473-e9f96fe4745e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/services/booking.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/general.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageBooking.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageReview.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin-app/components/NavMenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/user-app/components/info/ChangePassword.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/user-app/components/info/ChangePassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/bootsnav.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/bootsnav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/custom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/Counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/FetchData.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/Home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/Layout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/NavMenu.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/NavMenu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/Profile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/old/sb-admin-2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/general.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/general.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/user.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/Layout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/AboutUs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/home/BookingBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/BookingBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/PromoSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/PromoSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/ServiceAd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/ServiceAd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/ServiceSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/ServiceSection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/home/TestimonialSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/TestimonialSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/History.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/History.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/Info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/Info.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/info/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/login/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/login/Login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/login/Signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/login/Signup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/login/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/login/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/shared/Spinner.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/shared/Spinner.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/shared/Spinner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/shared/Spinner.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/shared/Validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/shared/Validation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/custom.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +51,9 @@
     <setting file="file://$PROJECT_DIR$/node_modules/react-router-transition/lib/index.js" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1lQIo9Kx32SqxYxHW8iyHbcD3KK" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -73,7 +63,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/package.json" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/admin-app/components" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -84,6 +74,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/admin-app/components" />
+      <recent name="$PROJECT_DIR$/src/user-app/components/info" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/admin-app" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="React" type="js.build_tools.npm">
@@ -114,22 +113,13 @@
       <workItem from="1607695715685" duration="11901000" />
       <workItem from="1607743660090" duration="18115000" />
       <workItem from="1607783092969" duration="12753000" />
-      <workItem from="1607842297080" duration="3703000" />
+      <workItem from="1607842297080" duration="10188000" />
+      <workItem from="1607865926633" duration="14567000" />
+      <workItem from="1607927869554" duration="4720000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/user-app/components/login/Signup.js</url>
-          <line>29</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

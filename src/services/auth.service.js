@@ -1,5 +1,4 @@
 import axios from "axios";
-import authHeader from './auth-header';
 
 const API_URL = "https://cleaning-service-hust.herokuapp.com/api/";
 
@@ -36,18 +35,6 @@ class AuthService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  getMe() {
-    return axios.get(API_URL + "me", {headers: authHeader()});
-  }
-
-  updateMe(name, email, address, phone) {
-    return axios.post(API_URL + "me", {
-      name,
-      phone,
-      email,
-      address
-    }, {headers: authHeader()});
-  }
 }
 
 export default new AuthService();

@@ -1,4 +1,4 @@
-import {isEmail, isEmpty, isMobilePhone, isBefore} from "validator";
+import {isBefore, isEmail, isEmpty, isMobilePhone} from "validator";
 import React from "react";
 
 const required = (value) => {
@@ -22,7 +22,8 @@ const email = (value) => {
 }
 
 const minLength = (value) => {
-  if (value.trim().length < 6) {
+
+  if (value > 0 && value.length < 6) {
     return <small className="form-text text-danger">Mật khẩu phải có tối thiểu 6
       ký tự</small>;
   }

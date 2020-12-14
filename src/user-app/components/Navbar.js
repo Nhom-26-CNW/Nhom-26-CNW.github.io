@@ -2,25 +2,24 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import AuthService from '../../services/auth.service';
 import Button from './shared/Button';
-
+import {AuthContext} from '../../auth/Auth';
 
 const USER_ROLES = {
   USER: 1,
   ADMIN: 2,
 }
 
-export class Navbar extends Component {
-
+class Navbar extends Component {
 
   handleLogOut(e) {
     AuthService.logout();
-    this.props.setUser(null);
+    this.context.setUser(null);
     window.location.replace('/');
   }
 
   render() {
-    let user = this.props.user;
-
+    let auth = this.context;
+    let user = auth.user;
     return (
       <header className="sticky-dark-bg">
         <div className="header-area">
@@ -54,14 +53,11 @@ export class Navbar extends Component {
                           <li>
                             <Link to="/info">Chào {user.username}</Link>
                           </li>
-                          {user.role === USER_ROLES.ADMIN && (
+                          {(user.roles === USER_ROLES.ADMIN) && (
                             <li>
-                              <Link to="/manage">Quản lý</Link>
+                              <Link to="/admin">Quản lý</Link>
                             </li>
                           )}
-                          <li>
-                            <Link to="/info">Chào {user.username}</Link>
-                          </li>
                           <li>
                             <Link to="/" onClick={e => this.handleLogOut(e)}>
                               Đăng xuất
@@ -104,3 +100,7 @@ export class Navbar extends Component {
     );
   }
 }
+
+Navbar.contextType = AuthContext;
+
+export {Navbar};

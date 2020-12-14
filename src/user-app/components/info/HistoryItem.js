@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import ReactStars from "react-rating-stars-component";
-
+import {Button, Modal} from 'reactstrap';
 import './HistoryItem.css'
 import BookingService from "../../../services/booking.service";
-import AuthService from "../../../services/auth.service";
 
 const BOOKING_STATUS = {
   NEW: 1,
@@ -15,6 +14,7 @@ const BOOKING_STATUS = {
 /** TODO:
  * - confirm khi huy
  * - phan trang
+ * - feedback
  */
 
 export class HistoryItem extends Component {
@@ -26,6 +26,7 @@ export class HistoryItem extends Component {
       status: this.props.item.status,
       review: this.props.item.review,
       showFeedbackBox: false,
+      showCancelConfirmModal: false
     }
 
     this.onRatingChanged = this.onRatingChanged.bind(this);
@@ -41,6 +42,17 @@ export class HistoryItem extends Component {
   }
 
   onCancelBooking(e) {
+    this.setState({
+      showCancelConfirmModal: true
+    })
+  }
+
+  onDiscardCancelBooking(e) {
+    this.setState({
+      showCancelConfirmModal: false
+    })  }
+
+  onCancelBookingConfirm(e) {
     BookingService.cancelBooking(this.props.item.id)
       .then((res) => {
         this.setState({
@@ -76,6 +88,9 @@ export class HistoryItem extends Component {
   }
 
   render() {
+    let item = this.props.item;
+    let hasRating = this.state.review;
+    let hasReviewContent = hasRating && this.state.review.content;
 
     let buttonsArea = {};
     buttonsArea[BOOKING_STATUS.NEW] = (
@@ -142,12 +157,26 @@ export class HistoryItem extends Component {
       currency: 'VND',
       maximumFractionDigits: 0
     }
-    let item = this.props.item;
-    let hasRating = this.state.review;
-    let hasReviewContent = hasRating && this.state.review.content;
 
     return (
       <div className="history-item">
+        <Modal show={this.state.showCancelConfirmModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </p>
+            <hr />
+
+            <h4>Overflowing text to show scroll behavior</h4>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.onDiscardCancelBooking}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
         <div className="row">
           <div className="col-sm-8">
             <div className="history-item-title">

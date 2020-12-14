@@ -9,11 +9,6 @@ import Input from "react-validation/build/input";
 import {email, minLength, phone, required} from '../shared/Validation';
 
 
-
-/** TODO:
- * - check lai xme chay dc chua
- */
-
 export class Signup extends Component {
   constructor(props) {
     super(props);
@@ -84,24 +79,24 @@ export class Signup extends Component {
         this.state.address,
         this.state.password
       ).then((res) => {
-          console.log(res);
-          this.props.history.push("/login");
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+        console.log(res);
+        this.props.history.push("/login");
+      })
+        .catch(error => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          this.setState({
-            loading: false,
-            hasError: true,
-            message: resMessage
-          });
-        }
-      );
+            this.setState({
+              loading: false,
+              hasError: true,
+              message: resMessage
+            });
+          }
+        );
     } else {
       this.setState({
         loading: false
@@ -182,9 +177,9 @@ export class Signup extends Component {
                 <button className="btn btn-primary btn-block" type="button"
                         disabled>
                   <div className="loader" id="loader-4">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span/>
+                    <span/>
+                    <span/>
                   </div>
                 </button>
               ) : (

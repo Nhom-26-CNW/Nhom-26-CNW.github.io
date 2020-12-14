@@ -7,12 +7,10 @@ import AuthService from "../../../services/auth.service";
 import {email, minLength, required} from '../shared/Validation';
 
 import "./Login.css";
+import {AuthContext} from "../../../auth/Auth";
 
-/** TODO:
- * - xu ly loi
- */
 
-export class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
@@ -50,39 +48,42 @@ export class Login extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.login(this.state.username, this.state.password).then(
-        res => {
-          this.props.setUser(res);
-          this.props.history.push("/info");
-          // window.location.reload();
-        },
-        error => {
-          console.log(error);
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      AuthService.login(this.state.username, this.state.password)
+        .then(res => {
+          this.context.setUser(res);
+          let urlSearch = new URLSearchParams(this.props.location.search);
+          this.props.history.push(urlSearch.get("next") || "/info");
+        })
+        .catch(error => {
+            console.log(error);
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
-        }
-      );
+            this.setState({
+              loading: false,
+              message: resMessage
+            });
+          }
+        );
     }
   }
 
   render() {
+    let user = this.context.user;
 
-    let user = AuthService.getCurrentUser();
-
-    return user ? (
-      <Redirect to="/info"/>
-    ) : (
-
+    return user ? (<Redirect to="/info"/>) : (
       <div className="login-clean">
+        {this.state.message && (
+          <div className="form-group">
+            <div className="alert alert-danger" role="alert">
+              {this.state.message}
+            </div>
+          </div>
+        )}
         <Form onSubmit={e => this.handleLogin(e)} ref={c => {
           this.form = c
         }}>
@@ -116,9 +117,9 @@ export class Login extends Component {
                 <button className="btn btn-primary btn-block" type="button"
                         disabled>
                   <div className="loader" id="loader-4">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span/>
+                    <span/>
+                    <span/>
                   </div>
                 </button>
               ) : (
@@ -137,3 +138,7 @@ export class Login extends Component {
     );
   }
 }
+
+Login.contextType = AuthContext;
+
+export {Login};

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Button from '../shared/Button';
-import {phone, required, isAfterToday} from '../shared/Validation';
+import {isAfterToday, phone, required} from '../shared/Validation';
 import AuthService from "../../../services/auth.service";
+import UserService from "../../../services/user.service";
 import BookingService from "../../../services/booking.service";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -51,19 +52,18 @@ export class BookingBox extends Component {
   }
 
   componentDidMount() {
-    AuthService.getMe()
-      .then(res => {
-        console.log(res);
-        console.log(res.data.name);
-        console.log(res.data.phone);
-        console.log(res.data.address);
-
-        this.setState({
-          name: this.state.name || res.data.name || null,
-          address: this.state.address || res.data.address || null,
-          phone: this.state.phone || res.data.phone || null
-        });
-      })
+    if (AuthService.getCurrentUser() != null) {
+      UserService.getMe()
+        .then(res => {
+          this.setState({
+            name: this.state.name || res.data.name || null,
+            address: this.state.address || res.data.address || null,
+            phone: this.state.phone || res.data.phone_number || null
+          });
+        })
+        .catch(() => {
+        })
+    }
   }
 
   validateCheckBox() {
@@ -260,7 +260,8 @@ export class BookingBox extends Component {
                           <Tick size={200}/>
                         </div>
                         <div className="success-message">
-                          <h4>Đặt lịch thành công (Đơn #{this.state.order_id})</h4>
+                          <h4>Đặt lịch thành công (Đơn
+                            #{this.state.order_id})</h4>
                           <p>Bạn sẽ sớm nhận được cuộc gọi xác nhận của
                             HouseClean.</p>
                         </div>

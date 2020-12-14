@@ -5,22 +5,27 @@ const API_URL = "https://cleaning-service-hust.herokuapp.com/api/";
 
 class UserService {
 
-  getProfile() {
+  getMe() {
     return axios.get(API_URL + 'me', { headers: authHeader() });
-  }
-
-  updateProfile(name, phone, email, address, password) {
-    return axios.post(API_URL + 'me', {
-      name,
-      phone,
-      email,
-      address,
-      password
-    }, { headers: authHeader() });
   }
 
   getHistory() {
     return axios.get(API_URL + 'user/bookings', { headers: authHeader() });
+  }
+
+  updateMe(name, address, phone) {
+    return axios.patch(API_URL + "profile", {
+      name: name,
+      phone_number: phone,
+      address: address
+    }, {headers: authHeader()});
+  }
+
+  updatePassword(oldPassword, newPassword) {
+    return axios.patch(API_URL + "password/change", {
+      password: oldPassword,
+      new_password: newPassword
+    }, {headers: authHeader()});
   }
 }
 

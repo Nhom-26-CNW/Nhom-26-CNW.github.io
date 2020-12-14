@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import ScriptTag from 'react-script-tag';
 import {Route, useLocation} from 'react-router';
 import {Layout} from './components/Layout';
 import Home from './components/home/Home';
-import Page404 from './components/404/Page404';
 import {Login} from './components/login/Login';
 import {Signup} from './components/login/Signup';
 
-import {PrivateRoute} from '../auth/Auth';
+import {AuthContext, PrivateRoute} from '../auth/Auth';
 import AuthService from '../services/auth.service';
+import UserService from '../services/user.service';
 
 import './css/animate.css';
 import './css/hover-min.css';
@@ -32,6 +31,7 @@ const App = () => {
   const location = useLocation();
 
   const [user, setUser] = useState(AuthService.getCurrentUser());
+  const [me, setMe] = useState(null);
 
   useEffect(() => {
     if (location.hash) {
@@ -39,7 +39,6 @@ const App = () => {
       // const yOffset = -70;
       const yOffset = 0;
       const element = document.getElementById(location.hash.slice(1));
-      console.log(element);
       if (element) {
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({top: y, behavior: 'smooth'});
@@ -50,41 +49,41 @@ const App = () => {
       top: 0,
       behavior: "smooth"
     });
-  }, [location,])
+  }, [location,]);
+
+  useEffect(() => {
+    console.log("Meing");
+    UserService.getMe()
+      .then(res => {
+        setMe(res.data);
+      })
+      .catch(err => {
+        setMe(null);
+        AuthService.logout();
+      });
+  }, []);
 
   return (
-    <Layout user={user} setUser={setUser}>
-      <AnimatedSwitch
-        atEnter={{opacity: 0}}
-        atLeave={{opacity: 0}}
-        atActive={{opacity: 1}}
-      >
-        <Route exact path='/' component={Home}/>
-        <Route exact path='/login' render={(props) => (
-          <Login {...props} setUser={setUser}/>
-        )}
-        />
-        <Route exact path='/signup' component={Signup}/>
-        <PrivateRoute path='/info'>
-          <Info/>
-        </PrivateRoute>
-        <Route path='*' component={Page404}/>
-      </AnimatedSwitch>
-      {/*<ScriptTag defer type="text/javascript"*/}
-      {/*           src={'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'}/>*/}
-      {/*<ScriptTag defer type="text/javascript"*/}
-      {/*           src={process.env.PUBLIC_URL + '/js/bootstrap.min.js'}/>*/}
-      {/*<ScriptTag defer type="text/javascript"*/}
-      {/*           src={process.env.PUBLIC_URL + '/js/bootsnav.js'}/>*/}
-      {/*<ScriptTag defer type="text/javascript"*/}
-      {/*           src={process.env.PUBLIC_URL + '/js/jquery.filterizr.min.js'}/>*/}
-      {/*<ScriptTag defer type="text/javascript"*/}
-      {/*           src={'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js'}/>*/}
-      {/*<ScriptTag defer type="text/javascript"*/}
-      {/*           src={'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'}/>*/}
-    </Layout>
+    <AuthContext.Provider value={{user, setUser, me, setMe}}>
+      <Layout>
+        <AnimatedSwitch
+          atEnter={{opacity: 0}}
+          atLeave={{opacity: 0}}
+          atActive={{opacity: 1}}
+        >
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/login' render={(props) => (
+            <Login {...props} setUser={setUser}/>
+          )}
+          />
+          <Route exact path='/signup' component={Signup}/>
+          <PrivateRoute path='/info'>
+            <Info/>
+          </PrivateRoute>
+        </AnimatedSwitch>
+      </Layout>
+    </AuthContext.Provider>
   );
-
 }
 
 export default App;

@@ -300,7 +300,7 @@ a.button-link {
   -webkit-appearance: none;
   background-color: #fafafa;
   border: 1px solid #cacece;
-  padding: 10px;
+  padding: 10px !important;
   margin-top: 0 !important;
   margin-right: 10px !important;
   border-radius: 3px;

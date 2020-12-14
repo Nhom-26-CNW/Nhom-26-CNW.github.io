@@ -7,7 +7,7 @@ import faker from 'faker/locale/vi';
 
 const TestimonialCard = (props) => {
   const rand = function() {
-    return Math.random().toString(36).substr(2); // remove `0.`
+    return Math.random().toString(36).substr(2);
   };
 
   const review = props.review;
@@ -56,7 +56,7 @@ export class TestimonialSection extends Component {
     GeneralService.getReviews()
       .then(res => {
         this.setState({
-          reviews: res.data.data.slice(0, 10)
+          reviews: res.data.data.filter((review) => review.rating >= 4).slice(0, 10)
         })
       })
   }
@@ -69,8 +69,7 @@ export class TestimonialSection extends Component {
     const options = {
       items:3,
       margin:0,
-      loop:true,
-      // autoplay:true,
+      autoplay:true,
       smartSpeed:1000,
       dots:false,
       autoplayHoverPause:true,
