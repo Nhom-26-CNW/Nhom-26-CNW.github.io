@@ -24,6 +24,14 @@ class BookingService {
     return axios.patch(API_URL + `bookings/${id}/cancel`, null,{headers: authHeader()});
   }
 
+  postReview(booking_id, rating, content) {
+    return axios.post(API_URL + 'reviews', {booking_id, rating, content},{headers: authHeader()});
+  }
+
+  updateReview(id, rating, content) {
+    return axios.patch(API_URL + `reviews/${id}`, {rating, content},{headers: authHeader()});
+  }
+
 }
 
 export default new BookingService();

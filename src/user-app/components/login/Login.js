@@ -8,6 +8,7 @@ import {email, minLength, required} from '../shared/Validation';
 
 import "./Login.css";
 import {AuthContext} from "../../../auth/Auth";
+import Loader from "../shared/Loader";
 
 
 class Login extends Component {
@@ -55,11 +56,17 @@ class Login extends Component {
           this.props.history.push(urlSearch.get("next") || "/info");
         })
         .catch(error => {
-            console.log(error);
+            if (error.response.status === 401) {
+              this.setState({
+                loading: false,
+                message: "Vui lòng kiểm tra lại địa chỉ email và mật khẩu."
+              });
+              return;
+            }
             const resMessage =
               (error.response &&
                 error.response.data &&
-                error.response.data.message) ||
+                error.response.data.error) ||
               error.message ||
               error.toString();
 
@@ -77,13 +84,6 @@ class Login extends Component {
 
     return user ? (<Redirect to="/info"/>) : (
       <div className="login-clean">
-        {this.state.message && (
-          <div className="form-group">
-            <div className="alert alert-danger" role="alert">
-              {this.state.message}
-            </div>
-          </div>
-        )}
         <Form onSubmit={e => this.handleLogin(e)} ref={c => {
           this.form = c
         }}>
@@ -91,6 +91,13 @@ class Login extends Component {
           <div className="illustration">
             <i className="fa fa-home" aria-hidden="true"/>
           </div>
+          {this.state.message && (
+            <div className="form-group">
+              <div className="alert alert-danger login-alert text-center" role="alert">
+                {this.state.message}
+              </div>
+            </div>
+          )}
           <div className="form-group">
             <Input
               onChange={this.onChangeEmail}
@@ -116,11 +123,7 @@ class Login extends Component {
               this.state.loading ? (
                 <button className="btn btn-primary btn-block" type="button"
                         disabled>
-                  <div className="loader" id="loader-4">
-                    <span/>
-                    <span/>
-                    <span/>
-                  </div>
+                  <Loader/>
                 </button>
               ) : (
                 <button className="btn btn-primary btn-block" type="submit">Đăng

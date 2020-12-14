@@ -2,34 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8415edb6-56cb-485b-9473-e9f96fe4745e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageBooking.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageReview.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/admin-app/components/ManageUser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/admin-app/components/NavMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-app/components/info/ChangePassword.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-app/components/info/ChangePassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/user-app/components/shared/Loader.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/user-app/components/shared/Loader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/Auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/general.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/general.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/user.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/BookingBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/BookingBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/TestimonialSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/TestimonialSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/booking.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/booking.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/History.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/History.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/Info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/Info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/login/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/login/Login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/login/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user-app/components/login/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/login/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/shared/Validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/shared/Validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +97,8 @@
       <workItem from="1607783092969" duration="12753000" />
       <workItem from="1607842297080" duration="10188000" />
       <workItem from="1607865926633" duration="14567000" />
-      <workItem from="1607927869554" duration="4720000" />
+      <workItem from="1607927869554" duration="9747000" />
+      <workItem from="1607955179613" duration="1785000" />
     </task>
     <servers />
   </component>

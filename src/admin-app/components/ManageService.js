@@ -37,46 +37,13 @@ export class ManageService extends Component {
       });
   }
 
-  handleChangeCost = (event) => {
-    let serviceOnEdit = Object.assign({}, this.state.serviceOnEdit);
-    serviceOnEdit.cost = event.target.value;
-
-    this.setState({ serviceOnEdit: serviceOnEdit });
-  }
-
-  handleClickChangeCost = (event) => {
-    let serviceId = event.target.getAttribute("data-index");
-    let serviceOnEdit = Object.assign({}, this.state.serviceOnEdit);
-    serviceOnEdit.id = serviceId;
-    serviceOnEdit.cost = 0;
-
-    this.setState({ serviceOnEdit: serviceOnEdit });
-  }
-
-  changeCost = (event) => {
-    event.preventDefault();
-
-    let serviceId = event.target.getAttribute("data-index");
-
-    var config = {
-      method: 'patch',
-      url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services/' + serviceId,
-      headers: authHeader(),
-      data: { 'cost': this.state.serviceOnEdit.cost }
-    };
-
-    axios(config)
-      .then(response => {
-        //refetch
-        this.getServices();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   handleClickAddService = (event) => {
-    this.setState({ onAddService: true });
+    let service = Object.assign({}, this.state.serviceOnEdit);
+    service.id=0;
+    service.name='';
+    service.description='';
+    service.cost=0;
+    this.setState({ onAddService: true, serviceOnEdit:service });
   }
 
   handleClickCloseAddingService = (event) => {
@@ -90,9 +57,19 @@ export class ManageService extends Component {
     this.setState({ serviceOnEdit: service });
   }
 
-  addService = (event) => {
+  handleSubmitAddOrEdit = (event) => {
     event.preventDefault();
 
+    if(this.state.serviceOnEdit.id == 0)
+    {
+      this.addService();
+    }
+    else
+    {
+      this.editService();
+    }
+  }
+  addService = () => {
     var data = new FormData();
     data.append('name', this.state.serviceOnEdit.name);
     data.append('description', this.state.serviceOnEdit.description);
@@ -103,6 +80,28 @@ export class ManageService extends Component {
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services',
       headers: authHeader(),
       data: data
+    };
+
+    axios(config)
+      .then(response => {
+        //refetch
+        this.getServices();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  editService = () =>{
+    var config = {
+      method: 'patch',
+      url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services/' + this.state.serviceOnEdit.id,
+      headers: authHeader(),
+      data: {
+        'name': this.state.serviceOnEdit.name,
+        'description': this.state.serviceOnEdit.description,
+        'cost': this.state.serviceOnEdit.cost
+      }
     };
 
     axios(config)
@@ -132,6 +131,12 @@ export class ManageService extends Component {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  showEditForm = (event)=>{
+    let serviceId = event.target.getAttribute("data-index");
+    let service = this.state.services.filter((item) => { return item.id == serviceId })[0];
+    this.setState({ onAddService: true,  serviceOnEdit:service});
   }
 
   setDataTableDemo = () => {
@@ -169,11 +174,22 @@ export class ManageService extends Component {
               onClick={this.handleClickCloseAddingService}>
               Close
             </button>
-            <form onSubmit={this.addService}
+            <form onSubmit={this.handleSubmitAddOrEdit}
               data-index={0}
               hidden={this.state.onAddService == false}
             >
               <br></br>
+              <div className="form-group">
+                <label>Id :</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="id"
+                  value={this.state.serviceOnEdit.id}
+                  onChange={this.handleChangeAddForm}
+                  disabled={true}
+                />
+              </div>
               <div className="form-group">
                 <label>Name :</label>
                 <input
@@ -235,7 +251,7 @@ export class ManageService extends Component {
                         <th>Name</th>
                         <th>Description</th>
                         <th>Cost</th>
-                        <th>Change Cost</th>
+                        <th>Edit</th>
                         <th>Remove</th>
                       </tr>
                     </thead>
@@ -247,7 +263,7 @@ export class ManageService extends Component {
                         <th>Name</th>
                         <th>Description</th>
                         <th>Cost</th>
-                        <th>Change Cost</th>
+                        <th>Edit</th>
                         <th>Remove</th>
                       </tr>
                     </tfoot>
@@ -260,35 +276,15 @@ export class ManageService extends Component {
                           <td>{service.name}</td>
                           <td>{service.description}</td>
                           <td>{service.cost}</td>
+
                           <td>
                             <button type="button"
-                              className="btn btn-primary"
+                              className="btn btn-warning"
                               data-index={service.id}
-                              hidden={this.state.serviceOnEdit.id == service.id}
-                              onClick={this.handleClickChangeCost}>
-                              Change Cost
-                        </button>
-                            <form onSubmit={this.changeCost}
-                              data-index={service.id}
-                              hidden={this.state.serviceOnEdit.id != service.id}>
-                              <div className="form-group">
-                                <input
-                                  type="text"
-                                  className="form-control"
-                                  name="id"
-                                  value={this.state.serviceOnEdit.cost}
-                                  onChange={this.handleChangeCost}
-                                  disabled={false}
-                                />
-                              </div>
-                              <div className="text-center">
-                                <button type="submit"
-                                  className="btn btn-warning"
-                                  data-index={service.id}>
-                                  Submit
+                              onClick={this.showEditForm}
+                            >
+                              Edit
                             </button>
-                              </div>
-                            </form>
                           </td>
                           <td>
                             <button type="button"
@@ -297,7 +293,7 @@ export class ManageService extends Component {
                               onClick={this.removeService}
                             >
                               Remove
-                        </button>
+                            </button>
                           </td>
                         </tr>
                       )}

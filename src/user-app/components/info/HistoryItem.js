@@ -3,6 +3,8 @@ import ReactStars from "react-rating-stars-component";
 import {Button, Modal} from 'reactstrap';
 import './HistoryItem.css'
 import BookingService from "../../../services/booking.service";
+import Spinner from "../shared/Spinner";
+import Loader from "../shared/Loader";
 
 const BOOKING_STATUS = {
   NEW: 1,
@@ -23,14 +25,16 @@ export class HistoryItem extends Component {
     super(props);
 
     this.state = {
-      status: this.props.item.status,
-      review: this.props.item.review,
+      status: this.props.item.status || 0,
+      reviewContent: this.props.item.review ? this.props.item.review.content : "",
+      rating: this.props.item.review ? this.props.item.review.rating : 0,
       showFeedbackBox: false,
-      showCancelConfirmModal: false
     }
 
     this.onRatingChanged = this.onRatingChanged.bind(this);
+    this.onFeedbackChange = this.onFeedbackChange.bind(this);
     this.onCancelBooking = this.onCancelBooking.bind(this);
+    this.onSaveReview = this.onSaveReview.bind(this);
     this.onBookAgain = this.onBookAgain.bind(this);
   }
 
@@ -41,41 +45,59 @@ export class HistoryItem extends Component {
     })
   }
 
-  onCancelBooking(e) {
+  onFeedbackChange(e) {
     this.setState({
-      showCancelConfirmModal: true
+      reviewContent: e.target.value
     })
   }
 
-  onDiscardCancelBooking(e) {
+  onCancelBooking(e) {
     this.setState({
-      showCancelConfirmModal: false
-    })  }
+      loadingCancelBtn: true,
+    });
 
-  onCancelBookingConfirm(e) {
     BookingService.cancelBooking(this.props.item.id)
       .then((res) => {
         this.setState({
-          loading: false,
+          loadingCancelBtn: false,
           status: BOOKING_STATUS.CANCELED
         });
       })
       .catch(error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
           this.setState({
-            loading: false,
-            hasError: true,
-            message: resMessage
+            loadingCancelBtn: false,
           });
         }
       );
   }
+
+  onSaveReview(e) {
+    this.setState({
+      loadingReviewSaveBtn: true,
+    });
+
+    let promise = null;
+
+    if (this.props.item.review == null) {
+      promise = BookingService.postReview(this.props.item.id, this.state.rating, this.state.reviewContent)
+    } else {
+      promise = BookingService.updateReview(this.props.item.review.id, this.state.rating, this.state.reviewContent)
+    }
+
+    promise
+      .then((res) => {
+        this.setState({
+          loadingReviewSaveBtn: false,
+          showFeedbackBox: false
+        });
+      })
+      .catch(error => {
+        this.setState({
+          loadingReviewSaveBtn: false,
+        });
+      });
+  }
+
 
   onBookAgain(e) {
     let item = this.props.item;
@@ -89,8 +111,7 @@ export class HistoryItem extends Component {
 
   render() {
     let item = this.props.item;
-    let hasRating = this.state.review;
-    let hasReviewContent = hasRating && this.state.review.content;
+    let hasReviewContent = this.state.reviewContent !== "";
 
     let buttonsArea = {};
     buttonsArea[BOOKING_STATUS.NEW] = (
@@ -98,9 +119,16 @@ export class HistoryItem extends Component {
         <div className="col-md-3">
         </div>
         <div className="col-md-3">
-          <button className="btn btn-default" type="button" onClick={this.onCancelBooking}>
-            Hủy
-          </button>
+          {this.state.loadingCancelBtn ? (
+            <button className="btn btn-default" type="button" disabled>
+              <Loader/>
+            </button>
+          ) : (
+            <button className="btn btn-default" type="button"
+                    onClick={this.onCancelBooking}>
+              Hủy
+            </button>
+          )}
         </div>
       </div>
     );
@@ -111,7 +139,8 @@ export class HistoryItem extends Component {
         <div className="col-md-3">
         </div>
         <div className="col-md-3">
-          <button className="btn btn-default btn-active" onClick={this.onBookAgain} type="button">
+          <button className="btn btn-default btn-active"
+                  onClick={this.onBookAgain} type="button">
             Đặt lại
           </button>
         </div>
@@ -126,7 +155,8 @@ export class HistoryItem extends Component {
           </button>
         </div>
         <div className="col-md-3">
-          <button className="btn btn-default btn-active" onClick={this.onBookAgain} type="button">
+          <button className="btn btn-default btn-active"
+                  onClick={this.onBookAgain} type="button">
             Đặt lại
           </button>
         </div>
@@ -160,23 +190,6 @@ export class HistoryItem extends Component {
 
     return (
       <div className="history-item">
-        <Modal show={this.state.showCancelConfirmModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
-            <hr />
-
-            <h4>Overflowing text to show scroll behavior</h4>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.onDiscardCancelBooking}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-
         <div className="row">
           <div className="col-sm-8">
             <div className="history-item-title">
@@ -236,7 +249,7 @@ export class HistoryItem extends Component {
               Đánh giá dịch vụ
               <ReactStars
                 count={5}
-                value={this.state.review.rating}
+                value={this.state.rating}
                 onChange={this.onRatingChanged}
                 size={24}
                 activeColor="#ffd700"
@@ -255,12 +268,25 @@ export class HistoryItem extends Component {
               <div className="feedback">
                 <div className="col-md-12">
                   <textarea className="comment" rows="5"
-                            placeholder="Hãy cho chúng tôi biết suy nghĩ của bạn">
-                    {this.state.review.content}
+                            placeholder="Hãy cho chúng tôi biết suy nghĩ của bạn"
+                            value={this.state.reviewContent}
+                            onChange={this.onFeedbackChange}
+                  >
                   </textarea>
-                  <button className="btn btn-default btn-active"
-                          type="button">Gửi
-                  </button>
+                  {this.state.loadingReviewSaveBtn ? (
+                    <button className="btn btn-default btn-active"
+                            type="button"
+                            disabled
+                    >
+                      <Loader/>
+                    </button>
+                  ) : (
+                    <button className="btn btn-default btn-active"
+                            type="button"
+                            onClick={this.onSaveReview}
+                    >Gửi
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -268,7 +294,7 @@ export class HistoryItem extends Component {
             <div className="row">
               <div className="feedback">
                 <div className="col-md-12">
-                  <p>{this.state.review.content}</p>
+                  <p>{this.state.reviewContent}</p>
                 </div>
               </div>
             </div>

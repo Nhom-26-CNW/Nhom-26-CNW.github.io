@@ -7,6 +7,7 @@ import CheckButton from "react-validation/build/button";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import {email, minLength, phone, required} from '../shared/Validation';
+import Loader from "../shared/Loader";
 
 
 export class Signup extends Component {
@@ -79,24 +80,40 @@ export class Signup extends Component {
         this.state.address,
         this.state.password
       ).then((res) => {
-        console.log(res);
-        this.props.history.push("/login");
-      })
-        .catch(error => {
-            const resMessage =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-
+          if (res.data.data) {
+            this.setState({
+              loading: false,
+              hasError: false,
+              message: "Tạo tài khoản thành công. Bạn sẽ được chuyển hướng tới trang đăng nhập trong 2 giây."
+            });
+            setTimeout(() => {
+              this.props.history.push("/login");
+            }, 2000);
+          } else {
             this.setState({
               loading: false,
               hasError: true,
-              message: resMessage
+              message: "Email đã được sử dụng. Vui lòng dùng email khác, hoặc đăng nhập."
             });
           }
-        );
+      })
+        .catch(error => {
+            const
+              resMessage =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
+                error.message ||
+                error.toString();
+
+            this
+              .setState({
+                loading: false,
+                hasError: true,
+                message: resMessage
+              });
+          }
+        )
     } else {
       this.setState({
         loading: false
@@ -119,12 +136,15 @@ export class Signup extends Component {
           <div className="illustration">
             <h1>Tạo tài khoản</h1>
           </div>
-          {this.state.hasError &&
-          <div className="alert alert-danger" role="alert">
-            Có lỗi xảy ra. Hãy thử lại sau!<br/>
-            {this.state.message}
-          </div>
-          }
+          {this.state.message && (this.state.hasError ? (
+            <div className="alert alert-danger" role="alert">
+              {this.state.message}
+            </div>
+          ) : (
+            <div className="alert alert-success" role="alert">
+              {this.state.message}
+            </div>
+          ))}
 
           <div className="form-group">
             <Input type="text"
@@ -176,11 +196,7 @@ export class Signup extends Component {
               this.state.loading ? (
                 <button className="btn btn-primary btn-block" type="button"
                         disabled>
-                  <div className="loader" id="loader-4">
-                    <span/>
-                    <span/>
-                    <span/>
-                  </div>
+                  <Loader/>
                 </button>
               ) : (
                 <button className="btn btn-primary btn-block"
