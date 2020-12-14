@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import ReactStars from "react-rating-stars-component";
-import {Button, Modal} from 'reactstrap';
 import './HistoryItem.css'
 import BookingService from "../../../services/booking.service";
-import Spinner from "../shared/Spinner";
 import Loader from "../shared/Loader";
 
 const BOOKING_STATUS = {
@@ -16,7 +14,6 @@ const BOOKING_STATUS = {
 /** TODO:
  * - confirm khi huy
  * - phan trang
- * - feedback
  */
 
 export class HistoryItem extends Component {
@@ -76,7 +73,7 @@ export class HistoryItem extends Component {
       loadingReviewSaveBtn: true,
     });
 
-    let promise = null;
+    let promise;
 
     if (this.props.item.review == null) {
       promise = BookingService.postReview(this.props.item.id, this.state.rating, this.state.reviewContent)

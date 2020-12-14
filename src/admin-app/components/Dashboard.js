@@ -38,9 +38,9 @@ export class Dashboard extends Component {
   }
 
   getEarnings = () => {
-    var axios = require('axios');
+    const axios = require('axios');
 
-    var config = {
+    const config = {
       method: 'get',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/profit',
       headers: authHeader()
@@ -68,9 +68,9 @@ export class Dashboard extends Component {
   }
 
   getRatings = () => {
-    var axios = require('axios');
+    const axios = require('axios');
 
-    var config = {
+    const config = {
       method: 'get',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/rating',
       headers: authHeader()
@@ -108,7 +108,7 @@ export class Dashboard extends Component {
   }
 
   render() {
-    var token = authHeader().Authorization;
+    const token = authHeader().Authorization;
     const currencyOptions = {
       style: 'currency',
       currency: 'VND',

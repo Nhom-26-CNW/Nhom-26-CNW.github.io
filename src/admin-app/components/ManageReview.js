@@ -16,7 +16,7 @@ export class ManageReview extends Component {
   }
 
   getBookings = () => {
-    var config = {
+    const config = {
       method: 'get',
       url: 'https://cleaning-service-hust.herokuapp.com/api/reviews',
       headers: authHeader()

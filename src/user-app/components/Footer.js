@@ -11,7 +11,7 @@ export class Footer extends Component {
               <div className="col-sm-4">
                 <div className="single-footer-item">
                   <div className="footer-logo">
-                    <a href="index.html">House<span>Clean</span> </a>
+                    <Link to="/">House<span>Clean</span></Link>
                     <p>Hơn cả giúp việc nhà</p>
                   </div>
                 </div>

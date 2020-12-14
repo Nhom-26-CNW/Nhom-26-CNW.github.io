@@ -3,7 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="8415edb6-56cb-485b-9473-e9f96fe4745e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageBooking.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageBooking.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageReview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageReview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/home/BookingBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/home/BookingBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/History.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/History.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/info/HistoryItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/css/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-app/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +35,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/node_modules/react-router-transition/lib/index.js" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1lQIo9Kx32SqxYxHW8iyHbcD3KK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -90,7 +105,7 @@
       <workItem from="1607842297080" duration="10188000" />
       <workItem from="1607865926633" duration="14567000" />
       <workItem from="1607927869554" duration="9747000" />
-      <workItem from="1607955179613" duration="3318000" />
+      <workItem from="1607955179613" duration="5419000" />
     </task>
     <servers />
   </component>

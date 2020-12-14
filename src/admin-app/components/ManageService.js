@@ -20,7 +20,7 @@ export class ManageService extends Component {
   }
 
   getServices = () => {
-    var config = {
+    const config = {
       method: 'get',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services',
       headers: authHeader()
@@ -60,7 +60,7 @@ export class ManageService extends Component {
   handleSubmitAddOrEdit = (event) => {
     event.preventDefault();
 
-    if(this.state.serviceOnEdit.id == 0)
+    if(this.state.serviceOnEdit.id === 0)
     {
       this.addService();
     }
@@ -70,12 +70,12 @@ export class ManageService extends Component {
     }
   }
   addService = () => {
-    var data = new FormData();
+    const data = new FormData();
     data.append('name', this.state.serviceOnEdit.name);
     data.append('description', this.state.serviceOnEdit.description);
     data.append('cost', this.state.serviceOnEdit.cost);
 
-    var config = {
+    const config = {
       method: 'post',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services',
       headers: authHeader(),
@@ -93,7 +93,7 @@ export class ManageService extends Component {
   }
 
   editService = () =>{
-    var config = {
+    const config = {
       method: 'patch',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services/' + this.state.serviceOnEdit.id,
       headers: authHeader(),
@@ -117,7 +117,7 @@ export class ManageService extends Component {
   removeService = (event) => {
     let serviceId = event.target.getAttribute("data-index");
 
-    var config = {
+    const config = {
       method: 'delete',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services/' + serviceId,
       headers: authHeader()
@@ -135,7 +135,7 @@ export class ManageService extends Component {
 
   showEditForm = (event)=>{
     let serviceId = event.target.getAttribute("data-index");
-    let service = this.state.services.filter((item) => { return item.id == serviceId })[0];
+    let service = this.state.services.filter((item) => { return item.id === serviceId })[0];
     this.setState({ onAddService: true,  serviceOnEdit:service});
   }
 
@@ -170,15 +170,15 @@ export class ManageService extends Component {
             <button type="button"
               className="btn btn-danger"
               data-index={0}
-              hidden={this.state.onAddService == false}
+              hidden={this.state.onAddService === false}
               onClick={this.handleClickCloseAddingService}>
               Close
             </button>
             <form onSubmit={this.handleSubmitAddOrEdit}
               data-index={0}
-              hidden={this.state.onAddService == false}
+              hidden={this.state.onAddService === false}
             >
-              <br></br>
+              <br/>
               <div className="form-group">
                 <label>Id :</label>
                 <input
@@ -235,7 +235,7 @@ export class ManageService extends Component {
           <div className={this.state.onAddService ? "col-xs-8 col-sm-8 col-md-8 col-lg-8"
             : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
 
-            <br></br>
+            <br/>
             <div className="card shadow mb-4" >
               <div className="card-header py-3">
                 <h6 className="m-0 font-weight-bold text-primary">Services</h6>

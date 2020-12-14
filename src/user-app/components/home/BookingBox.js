@@ -241,7 +241,7 @@ export class BookingBox extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <div className="single-travel-boxes" id="book">
+              <div className="single-book-box" id="book">
                 <div className="tab-para">
                   <div className="row">
                     <h2>Đặt lịch</h2>

@@ -18,7 +18,7 @@ export class ManageBooking extends Component {
   }
 
   getBookings = () => {
-    var config = {
+    const config = {
       method: 'get',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/bookings',
       headers: authHeader()
@@ -70,7 +70,7 @@ export class ManageBooking extends Component {
       newStatus = '4';
     }
 
-    var config = {
+    const config = {
       method: 'patch',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/bookings/' + value.id,
       headers: authHeader(),

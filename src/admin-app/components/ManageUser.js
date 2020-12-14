@@ -15,7 +15,7 @@ export class ManageUser extends Component {
   }
 
   getUsers = () => {
-    var config = {
+    const config = {
       method: 'get',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/users',
       headers: authHeader()
@@ -57,9 +57,9 @@ export class ManageUser extends Component {
   lockAccount = (event)=>{
     let userId = event.target.getAttribute('data-index');
 
-    var config = {
+    const config = {
       method: 'patch',
-      url: 'https://cleaning-service-hust.herokuapp.com/api/admin/users/'+userId+'/lock',
+      url: 'https://cleaning-service-hust.herokuapp.com/api/admin/users/' + userId + '/lock',
       headers: authHeader()
     };
 
@@ -76,9 +76,9 @@ export class ManageUser extends Component {
   unlockAccount = (event)=>{
     let userId = event.target.getAttribute('data-index');
 
-    var config = {
+    const config = {
       method: 'patch',
-      url: 'https://cleaning-service-hust.herokuapp.com/api/admin/users/'+userId+'/unlock',
+      url: 'https://cleaning-service-hust.herokuapp.com/api/admin/users/' + userId + '/unlock',
       headers: authHeader()
     };
 
