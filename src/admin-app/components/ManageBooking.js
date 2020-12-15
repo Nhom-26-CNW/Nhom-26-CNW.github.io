@@ -3,13 +3,18 @@ import authHeader from '../../services/auth-header';
 import axios from 'axios';
 import {Combobox} from 'react-widgets';
 import 'react-widgets/dist/css/react-widgets.css';
+import Spinner from "../../user-app/components/shared/Spinner";
+import {Badge} from "reactstrap";
 
 export class ManageBooking extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {bookings: []}
+    this.state = {
+      loading: true,
+      bookings: []
+    }
   }
 
   componentDidMount() {
@@ -49,7 +54,10 @@ export class ManageBooking extends Component {
           booking.services = strServices;
         }
 
-        this.setState({bookings: bookings});
+        this.setState({
+          bookings: bookings,
+          loading: false
+        });
 
         this.setDataTableDemo();
       })
@@ -59,7 +67,7 @@ export class ManageBooking extends Component {
   }
 
   updateBookingStatus = (value) => {
-    let newStatus = 0;
+    let newStatus = 1;
     if (value.status === 'new') {
       newStatus = '1';
     } else if (value.status === 'confirmed') {
@@ -104,52 +112,57 @@ export class ManageBooking extends Component {
 
 
   render() {
+    const BADGE_COLORS = {
+      new: 'info',
+      confirmed: 'primary',
+      completed: 'success',
+      canceled: 'secondary'
+    }
+
     return (
       <div className="container-fluid">
-
         <div className="card shadow mb-4">
           <div className="card-header py-3">
-            <h6 className="m-0 font-weight-bold text-primary">Bookings</h6>
+            <h6 className="m-0 font-weight-bold text-primary">Đơn đặt</h6>
           </div>
           <div className="card-body">
             <div className="table-responsive">
+              {this.state.loading ? (
+                <Spinner/>
+              ) : (
               <table className="table table-bordered" id="dataTable"
                      width="100%"
                      cellSpacing={0}>
                 <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Created At</th>
-                  <th>Updated At</th>
-                  <th>User Id</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                  <th>Address</th>
-                  <th>Phone Number</th>
-                  <th>Name</th>
-                  <th>Services</th>
+                  <th>ID</th>
+                  <th>Ngày đặt</th>
+                  <th>Ngày cập nhật</th>
+                  <th>ID Người đặt</th>
+                  <th>Từ</th>
+                  <th>Đến</th>
+                  <th>Phí</th>
+                  <th>Dịch vụ</th>
+                  <th>Trạng thái</th>
+                  <th>Thông tin liên hệ</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
-                  <th>Id</th>
-                  <th>Created At</th>
-                  <th>Updated At</th>
-                  <th>User Id</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Amount</th>
-                  <th>CurrentStatus</th>
-                  <th>Address</th>
-                  <th>Phone Number</th>
-                  <th>Name</th>
-                  <th>Services</th>
+                  <th>ID</th>
+                  <th>Ngày đặt</th>
+                  <th>Ngày cập nhật</th>
+                  <th>ID Người đặt</th>
+                  <th>Từ</th>
+                  <th>Đến</th>
+                  <th>Phí</th>
+                  <th>Dịch vụ</th>
+                  <th>Trạng thái</th>
+                  <th>Thông tin liên hệ</th>
                 </tr>
                 </tfoot>
                 <tbody>
-                {this.state.bookings.map(booking =>
+                {this.state.bookings.map(booking => (
                   <tr key={booking.id}>
                     <td>{booking.id}</td>
                     <td>{new Date(booking.created_at).toLocaleString('vi-vn')}</td>
@@ -157,8 +170,12 @@ export class ManageBooking extends Component {
                     <td>{booking.user_id}</td>
                     <td>{booking.from}</td>
                     <td>{booking.to}</td>
-                    <td>{booking.amount}</td>
-                    <td>{booking.status}
+                    <td>{parseInt(booking.amount).toLocaleString('vi-vn')}</td>
+                    <td>{booking.services}</td>
+                    <td>
+                      <Badge color={BADGE_COLORS[booking.status]}>
+                        {booking.status}
+                      </Badge>
                       <Combobox
                         textField='status'
                         data={[
@@ -172,19 +189,20 @@ export class ManageBooking extends Component {
                         onChange={this.updateBookingStatus}
                       />
                     </td>
-                    <td>{booking.address}</td>
-                    <td>{booking.phone_number}</td>
-                    <td>{booking.name}</td>
-                    <td>{booking.services}</td>
+                    <td>
+                      {booking.name} <br/>
+                      {booking.phone_number} <br/>
+                      {booking.address}
+                    </td>
                   </tr>
-                )}
+                ))}
                 </tbody>
               </table>
+              )}
             </div>
           </div>
         </div>
       </div>
     );
   }
-
 }

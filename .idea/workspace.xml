@@ -3,36 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8415edb6-56cb-485b-9473-e9f96fe4745e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog/b1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog/b2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog/b3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/client/testimonial1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/client/testimonial2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallary/g1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallary/g2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallary/g3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallary/g4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallary/g5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/gallary/g6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/home/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/home/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/home/fastive-image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/home/offer-banner.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/home/offer-timer.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/home/offer-timer.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/home/subscribe-banner.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/offer/offer-banner.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/offer/offer-shape.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/service/s1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/bootsnav.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/datepicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.counterup.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.filterizr.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.sticky.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/waypoints.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-app/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-app/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageBooking.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageBooking.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageReview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageReview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/ManageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/ManageUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin-app/components/NavMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin-app/components/NavMenu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +99,8 @@
       <workItem from="1607842297080" duration="10188000" />
       <workItem from="1607865926633" duration="14567000" />
       <workItem from="1607927869554" duration="9747000" />
-      <workItem from="1607955179613" duration="7170000" />
+      <workItem from="1607955179613" duration="8585000" />
+      <workItem from="1608006064623" duration="10787000" />
     </task>
     <servers />
   </component>

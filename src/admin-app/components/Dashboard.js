@@ -124,7 +124,7 @@ export class Dashboard extends Component {
           </div>
           <div
             className="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 className="h3 mb-0 text-gray-800">Thống kê</h1>
             {/*<a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i className="fas fa-download fa-sm text-white-50" /> Generate Report</a>*/}
           </div>
           <div className="row">
@@ -134,8 +134,8 @@ export class Dashboard extends Component {
                   <div className="row no-gutters align-items-center">
                     <div className="col mr-2">
                       <div
-                        className="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings
-                        (Monthly)
+                        className="text-xs font-weight-bold text-primary text-uppercase mb-1">Thu nhập
+                        (Theo tháng)
                       </div>
                       <div className="h5 mb-0 font-weight-bold text-gray-800">
                         {this.state.currentMonthEarning.toLocaleString('vi-vn', currencyOptions)}
@@ -155,8 +155,8 @@ export class Dashboard extends Component {
                   <div className="row no-gutters align-items-center">
                     <div className="col mr-2">
                       <div
-                        className="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings
-                        (Annual)
+                        className="text-xs font-weight-bold text-success text-uppercase mb-1">Thu nhập
+                        (Theo năm)
                       </div>
                       <div className="h5 mb-0 font-weight-bold text-gray-800">
                         {this.state.sixMonthEarning.toLocaleString('vi-vn', currencyOptions)}
@@ -175,8 +175,7 @@ export class Dashboard extends Component {
                   <div className="row no-gutters align-items-center">
                     <div className="col mr-2">
                       <div
-                        className="text-xs font-weight-bold text-info text-uppercase mb-1">Average
-                        Rating
+                        className="text-xs font-weight-bold text-info text-uppercase mb-1">Đánh giá trung bình
                       </div>
                       <div className="row no-gutters align-items-center">
                         <div className="col-auto">
@@ -208,8 +207,7 @@ export class Dashboard extends Component {
                   <div className="row no-gutters align-items-center">
                     <div className="col mr-2">
                       <div
-                        className="text-xs font-weight-bold text-warning text-uppercase mb-1">Number
-                        of Ratings
+                        className="text-xs font-weight-bold text-warning text-uppercase mb-1">Số lượt đánh giá
                       </div>
                       <div
                         className="h5 mb-0 font-weight-bold text-gray-800">{this.state.numberOfRating}</div>
@@ -229,25 +227,7 @@ export class Dashboard extends Component {
               <div className="card shadow mb-4">
                 <div
                   className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 className="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                  {/*<div className="dropdown no-arrow">*/}
-                  {/*  <a className="dropdown-toggle" href="#" role="button"*/}
-                  {/*     id="dropdownMenuLink" data-toggle="dropdown"*/}
-                  {/*     aria-haspopup="true" aria-expanded="false">*/}
-                  {/*    <i*/}
-                  {/*      className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"/>*/}
-                  {/*  </a>*/}
-                  {/*  /!*<div*!/*/}
-                  {/*  /!*  className="dropdown-menu dropdown-menu-right shadow animated--fade-in"*!/*/}
-                  {/*  /!*  aria-labelledby="dropdownMenuLink">*!/*/}
-                  {/*  /!*  <div className="dropdown-header">Dropdown Header:</div>*!/*/}
-                  {/*  /!*  <a className="dropdown-item" href="#">Action</a>*!/*/}
-                  {/*  /!*  <a className="dropdown-item" href="#">Another action</a>*!/*/}
-                  {/*  /!*  <div className="dropdown-divider"/>*!/*/}
-                  {/*  /!*  <a className="dropdown-item" href="#">Something else*!/*/}
-                  {/*  /!*    here</a>*!/*/}
-                  {/*  /!*</div>*!/*/}
-                  {/*</div>*/}
+                  <h6 className="m-0 font-weight-bold text-primary">Tổng quan thu nhập</h6>
                 </div>
                 <div className="card-body">
                   <div className="chart-area">
@@ -260,7 +240,7 @@ export class Dashboard extends Component {
             <div className="col-xl-4 col-lg-5">
               <div className="card shadow mb-4">
                 <div className="card-header py-3">
-                  <h6 className="m-0 font-weight-bold text-primary">Rating</h6>
+                  <h6 className="m-0 font-weight-bold text-primary">Đánh giá</h6>
                 </div>
                 <div className="card-body">
                   <h4 className="small font-weight-bold">⭐<span

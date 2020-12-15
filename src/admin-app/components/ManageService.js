@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import authHeader from '../../services/auth-header';
 import axios from 'axios';
+import Spinner from "../../user-app/components/shared/Spinner";
 
 export class ManageService extends Component {
 
@@ -8,8 +9,9 @@ export class ManageService extends Component {
     super(props);
 
     this.state = {
+      loading: true,
       services: [],
-      serviceOnEdit: { id: 0, name: '', description: '', cost: 0 },
+      serviceOnEdit: {id: 0, name: '', description: '', cost: 0},
       onAddService: false
     }
   }
@@ -29,7 +31,10 @@ export class ManageService extends Component {
     axios(config)
       .then(response => {
         let services = response.data.data;
-        this.setState({ services: services });
+        this.setState({
+          loading: false,
+          services: services
+        });
         this.setDataTableDemo();
       })
       .catch(error => {
@@ -39,33 +44,30 @@ export class ManageService extends Component {
 
   handleClickAddService = (event) => {
     let service = Object.assign({}, this.state.serviceOnEdit);
-    service.id=0;
-    service.name='';
-    service.description='';
-    service.cost=0;
-    this.setState({ onAddService: true, serviceOnEdit:service });
+    service.id = 0;
+    service.name = '';
+    service.description = '';
+    service.cost = 0;
+    this.setState({onAddService: true, serviceOnEdit: service});
   }
 
   handleClickCloseAddingService = (event) => {
-    this.setState({ onAddService: false });
+    this.setState({onAddService: false});
   }
 
   handleChangeAddForm = (event) => {
     let service = Object.assign({}, this.state.serviceOnEdit);
     service[event.target.name] = event.target.value;
 
-    this.setState({ serviceOnEdit: service });
+    this.setState({serviceOnEdit: service});
   }
 
   handleSubmitAddOrEdit = (event) => {
     event.preventDefault();
 
-    if(this.state.serviceOnEdit.id === 0)
-    {
+    if (this.state.serviceOnEdit.id === 0) {
       this.addService();
-    }
-    else
-    {
+    } else {
       this.editService();
     }
   }
@@ -92,7 +94,7 @@ export class ManageService extends Component {
       });
   }
 
-  editService = () =>{
+  editService = () => {
     const config = {
       method: 'patch',
       url: 'https://cleaning-service-hust.herokuapp.com/api/admin/services/' + this.state.serviceOnEdit.id,
@@ -133,15 +135,17 @@ export class ManageService extends Component {
       });
   }
 
-  showEditForm = (event)=>{
+  showEditForm = (event) => {
     let serviceId = event.target.getAttribute("data-index");
-    let service = this.state.services.filter((item) => { return item.id === serviceId })[0];
-    this.setState({ onAddService: true,  serviceOnEdit:service});
+    let service = this.state.services.filter((item) => {
+      return item.id == serviceId;
+    })[0];
+    this.setState({onAddService: true, serviceOnEdit: service});
   }
 
   setDataTableDemo = () => {
     let script = document.createElement("script");
-    script.src = "js/demo/datatables-demo.js";
+    script.src = "admin/js/demo/datatables-demo.js";
     script.async = true;
     document.body.appendChild(script);
     document.body.removeChild(script);
@@ -156,31 +160,37 @@ export class ManageService extends Component {
   }
 
   render() {
+    const currencyOptions = {
+      style: 'currency',
+      currency: 'VND',
+      maximumFractionDigits: 0
+    }
+
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <button type="button"
-              className="btn btn-primary"
-              data-index={0}
-              hidden={this.state.onAddService}
-              onClick={this.handleClickAddService}>
-              Add
+                    className="btn btn-primary"
+                    data-index={0}
+                    hidden={this.state.onAddService}
+                    onClick={this.handleClickAddService}>
+              Thêm
             </button>
             <button type="button"
-              className="btn btn-danger"
-              data-index={0}
-              hidden={this.state.onAddService === false}
-              onClick={this.handleClickCloseAddingService}>
-              Close
+                    className="btn btn-danger"
+                    data-index={0}
+                    hidden={!this.state.onAddService}
+                    onClick={this.handleClickCloseAddingService}>
+              Đóng
             </button>
             <form onSubmit={this.handleSubmitAddOrEdit}
-              data-index={0}
-              hidden={this.state.onAddService === false}
+                  data-index={0}
+                  hidden={this.state.onAddService === false}
             >
               <br/>
               <div className="form-group">
-                <label>Id :</label>
+                <label>ID:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -191,7 +201,7 @@ export class ManageService extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Name :</label>
+                <label>Tên:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -202,7 +212,7 @@ export class ManageService extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Description :</label>
+                <label>Mô tả:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -213,7 +223,7 @@ export class ManageService extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Cost :</label>
+                <label>Giá:</label>
                 <input
                   type="number"
                   className="form-control"
@@ -225,49 +235,54 @@ export class ManageService extends Component {
               </div>
               <div className="text-center">
                 <button type="submit"
-                  className="btn btn-warning"
-                  data-index={0}>
-                  Submit
-              </button>
+                        className="btn btn-warning"
+                        data-index={0}>
+                  Lưu
+                </button>
               </div>
             </form>
           </div>
-          <div className={this.state.onAddService ? "col-xs-8 col-sm-8 col-md-8 col-lg-8"
-            : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
+          <div
+            className={this.state.onAddService ? "col-xs-8 col-sm-8 col-md-8 col-lg-8"
+              : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
 
             <br/>
-            <div className="card shadow mb-4" >
+            <div className="card shadow mb-4">
               <div className="card-header py-3">
-                <h6 className="m-0 font-weight-bold text-primary">Services</h6>
+                <h6 className="m-0 font-weight-bold text-primary">Dịch vụ</h6>
               </div>
               <div className="card-body">
                 <div className="table-responsive">
-                  <table className="table table-bordered" id="dataTable" width="100%" cellSpacing={0}>
-                    <thead>
+                  {this.state.loading ? (
+                    <Spinner/>
+                  ) : (
+                    <table className="table table-bordered" id="dataTable"
+                           width="100%" cellSpacing={0}>
+                      <thead>
                       <tr>
-                        <th>Id</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Cost</th>
-                        <th>Edit</th>
-                        <th>Remove</th>
+                        <th>ID</th>
+                        <th>Ngày tạo</th>
+                        <th>Ngày cập nhật</th>
+                        <th>Tên</th>
+                        <th>Mô tả</th>
+                        <th>Giá</th>
+                        <th>Chỉnh sửa</th>
+                        <th>Xóa</th>
                       </tr>
-                    </thead>
-                    <tfoot>
+                      </thead>
+                      <tfoot>
                       <tr>
-                        <th>Id</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Cost</th>
-                        <th>Edit</th>
-                        <th>Remove</th>
+                        <th>ID</th>
+                        <th>Ngày tạo</th>
+                        <th>Ngày cập nhật</th>
+                        <th>Tên</th>
+                        <th>Mô tả</th>
+                        <th>Giá</th>
+                        <th>Chỉnh sửa</th>
+                        <th>Xóa</th>
                       </tr>
-                    </tfoot>
-                    <tbody>
+                      </tfoot>
+                      <tbody>
                       {this.state.services.map(service =>
                         <tr key={service.id}>
                           <td>{service.id}</td>
@@ -275,30 +290,31 @@ export class ManageService extends Component {
                           <td>{new Date(service.updated_at).toLocaleString('vi-vn')}</td>
                           <td>{service.name}</td>
                           <td>{service.description}</td>
-                          <td>{service.cost}</td>
+                          <td>{parseInt(service.cost).toLocaleString('vi-vn', currencyOptions)}</td>
 
                           <td>
                             <button type="button"
-                              className="btn btn-warning"
-                              data-index={service.id}
-                              onClick={this.showEditForm}
+                                    className="btn btn-warning"
+                                    data-index={service.id}
+                                    onClick={this.showEditForm}
                             >
-                              Edit
+                              Chỉnh sửa
                             </button>
                           </td>
                           <td>
                             <button type="button"
-                              className="btn btn-danger"
-                              data-index={service.id}
-                              onClick={this.removeService}
+                                    className="btn btn-danger"
+                                    data-index={service.id}
+                                    onClick={this.removeService}
                             >
-                              Remove
+                              Xóa
                             </button>
                           </td>
                         </tr>
                       )}
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
+                  )}
                 </div>
               </div>
             </div>
